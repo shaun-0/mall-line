@@ -1,0 +1,67 @@
+<%- include ("./partials/header") %>
+
+<div class="container set-top-margin">
+  <h1 class="float-center">Your Cart</h1>
+  <div class="container">
+    <% user.cart.forEach(function(item){ %>
+      <% if(item.count>0){ %>
+
+      
+        <div class="card mt-2 mb-2" style="padding-bottom: 1em;">
+          <div class="row">
+            <div id="l1" class="col-md-3 col-lg-2 col-sm-4">
+              <img id="ci" src="<%= item.productId.image %>" class="card-img" alt="...">
+            </div>
+            <div class="col-md-9 col-lg-10 col-sm-8">
+              <div class="card-body">
+                <div class="row">
+                  <h5 class="card-title pp col-lg-9 col-md-8 col-8"><%= item.productId.name %></h5>
+                  <h6 class="p-r col-lg-3 col-md-4 col-4">₹ <%= item.productId.price %></h6>
+                </div>
+  
+                <p class="card-text desc"><%= item.productId.description %></p>
+                <p class="card-text"><small style="color:rgb(0, 143, 19)" >In stock</small></p>
+                <div class="">
+                  <div class="pr-count c-d">
+                    <form style="display:inline" action="/product/<%= item.productId._id%>/dec" method="post">
+                      <button id="minus" class="btn btn-sm btn-secondary">-</button>
+                    </form>
+                    <span style="display:inline" class="ml-1 mr-1"><%= item.count %></span>
+                    <form style="display:inline"  action="/product/<%= item.productId._id%>/inc" method="post">
+                      <button id="plus" class="btn btn-sm btn-secondary">+</button>
+                    </form>
+                  </div>
+                  <div class="c-d del-p">
+                    <form style="display:inline"  action="/product/<%= item.productId._id%>/delete" method="post">
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          
+        </div>
+        
+        
+      </div>
+      <% } %>
+    <% }) %>
+    <hr>
+    <% if(user.totalBill>0){ %>
+      <h3 id="total-a">Total - ₹ <%= user.totalBill %></h3>
+      <form action="/order/new" method="post">
+        <button class="btn btn-success">Pay Now</button>
+      </form>
+    <% } else { %>
+      <div class="empt centre-it">
+        <span class="umm"><h1 class="umm float-center">(;-;)</h1></span>
+        <h1 class="float-center">Your Cart is empty</h1>
+      </div>
+      
+    <% } %>
+    
+  </div>
+</div>
+
+<%- include ("./partials/footer") %>

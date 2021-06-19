@@ -1,0 +1,23 @@
+<%- include ("../partials/header") %>
+<div class="container review-form">
+  <h4 style="text-align: center;">Review <%= product.name %></h4>
+  <form class="form-review" action="/product/<%= product._id %>/review" method="post">
+    <div class="btn-group mr-2 rating-star" role="group" >
+      <input type="radio" required="true" name="rating" value="5" id="star-1"><link rel="stylesheet"><label for="star-1"></label>
+      <input type="radio" name="rating" value="4" id="star-2"><link rel="stylesheet"><label for="star-2"></label>
+      <input type="radio" name="rating" value="3" id="star-3"><link rel="stylesheet"><label for="star-3"></label>
+      <input type="radio" name="rating" value="2" id="star-4"><link rel="stylesheet"><label for="star-4"></label>
+      <input type="radio" name="rating" value="1" id="star-5"><link rel="stylesheet"><label for="star-5"></label>
+    </div>
+    <div class="form-group">
+ 
+    </div>
+    <div class="form-group">
+      <label for="comment">Review</label>
+      <textarea class="form-control" name="review" id="comment" aria-describedby="reveiw-a" rows="5" cols="30"></textarea>
+    </div>
+    <button type="submit" id="buy-now" class="btn btn-primary ">Submit</button>
+  </form>
+</div>
+
+<%- include ("../partials/footer") %>
